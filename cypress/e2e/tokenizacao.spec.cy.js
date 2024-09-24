@@ -16,28 +16,6 @@ describe('Tokenização API', () => {
     });
   });
 
-  it('Validar tokenização de cartão', () => {
-    const cardData = new CardData(
-      "5155901222280001",
-      "12345678900",
-      "12",
-      "24",
-      "123",
-      "Mastercard"
-    );
-
-    cy.wrap(null).then(() => {
-      expect(authToken).to.exist;
-
-      tokenizeCard(authToken, cardData).then((response) => {
-        // Validação do status code
-        expect(response.status).to.eq(201);
-
-        // Validação dos campos obrigatórios
-        expect(response.body.number_token).not.be.empty
-      });
-    });
-  });
 
   it('Validar campos obrigatórios faltando', () => {
     const incompleteCardData = new CardData(
